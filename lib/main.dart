@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'app_state.dart';
 import 'screens/login_screen.dart';
 import 'screens/create_post_screen.dart';
-import 'screens/password_reset_screen.dart';
 import 'widgets/post_card.dart';
 
 void main() {
@@ -25,9 +24,6 @@ class MyApp extends StatelessWidget {
       home: appState.currentUser == null
           ? const LoginScreen()
           : const HomeScreen(),
-      routes: {
-        '/forgot-password': (context) => const PasswordResetScreen(),
-      },
     );
   }
 
