@@ -55,6 +55,33 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
   
+  bool userExists(String username) {
+    return _users.any((user) => user.username == username);
+  }
+  
+  bool resetPassword(String username, String newPassword) {
+    final userIndex = _users.indexWhere((user) => user.username == username);
+    if (userIndex != -1) {
+      // Create a new user object with the updated password
+      final oldUser = _users[userIndex];
+      final updatedUser = User(
+        id: oldUser.id,
+        username: oldUser.username,
+        password: newPassword,
+      );
+      _users[userIndex] = updatedUser;
+      
+      // If the current user is the one whose password was reset, update the current user reference
+      if (_currentUser?.username == username) {
+        _currentUser = updatedUser;
+      }
+      
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
+  
   void addPost(String text) {
     if (_currentUser == null) return;
     
