@@ -103,6 +103,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     : 'Have an account? Login',
               ),
             ),
+            if (_isLogin) ...[
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/forgot-password');
+                },
+                child: const Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),
